@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <RootNamespace>DotnetPowershell</RootNamespace>
+        <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+        <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
+        <LangVersion>default</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup>
+        <!-- Other property elements here (if any) -->
+
+        <!-- Define the post-build event command -->
+        <PostBuildEvent>
+            nuget pack "DotnetPowershellOtel.nuspec"
+        </PostBuildEvent>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.0" />
+      <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.0" />
+      <PackageReference Include="Microsoft.PowerShell.SDK" Version="7.3.6" />
+      <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.5.0" />
+        
+        <!-- OTEL -->
+        <PackageReference Include="OpenTelemetry" Version="1.5.0" />
+        <PackageReference Include="OpenTelemetry.Exporter.Jaeger" Version="1.5.0" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.5.0" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.5.0-beta.1" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.Http" Version="1.5.0-beta.1" />
+        <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.0.0-beta.13" />
+        <PackageReference Include="System.Management.Automation" Version="7.0.13" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="DotnetPowershellOtel.psd1">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+        <None Update="DotnetPowershellOtel.nuspec">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+
+</Project>
